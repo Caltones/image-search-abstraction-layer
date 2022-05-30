@@ -25,6 +25,7 @@ export default  async function handler(req, res) {
     rawdata = readFileSync('search_res.json');
     search_res = JSON.parse(rawdata);
   } else {
+    if(!process.env.api_key) return res.status(200).json({error:'invalid api key'})
     rawdata = await fetch(
       `https://serpapi.com/search.json?engine=google&q=${req.query.value}&google_domain=google.com&tbm=isch&ijn=${pages}&api_key=${process.env.api_key}`
     );
