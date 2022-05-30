@@ -22,7 +22,7 @@ export default  async function handler(req, res) {
   let rawdata;
   let search_res;
   if (process.env.mode==='test') {
-    rawdata = readFileSync('search_res.json');
+    rawdata = readFileSync('template.json');
     search_res = JSON.parse(rawdata);
   } else {
     if(!process.env.api_key) return res.status(200).json({error:'invalid api key'})
